@@ -1,0 +1,43 @@
+\section{Introduction}
+
+A reasonable performance floor for SMT solvers is that they should be
+faster than a human solving the same problem with a pen and paper.
+%
+In the case of non-linear expressions over theory of integers this
+floor is not always met.
+%
+For example consider the following problem:
+
+\mbsays{Give, in mathematical notation, not SMT-LIB, the simplest
+  problem which times out}
+
+In our experiments we found that \mbsays{which solvers and how long to
+time out} but observing \mbsays{Give some kind of hint} will allow
+many humans to solve it faster.
+
+\mbsays{Say why it is undecideable}
+This has an immediate practical consequence of their being no
+algorithms for the general case but we also believe that it has had
+chilling effect on the theory in general.
+%
+We believe there are many interesting and useful fragments of the
+theory of integers for which there are practical decision procedures,
+semi-decision procedures or good heuristics.
+\mbsays{For a full workshop paper, this would be a good place to
+  discuss the existing literature and techniques.}
+%
+In this paper we will consider one such fragment, existential
+polynomial equations.
+%
+In Section \ref{section:algorithm} we propose an
+abstraction-refinement style algorithm that uses the Chinese Remainder
+Theorem.
+Section \ref{section:results} we describe some preliminary experiments
+using our implementation of the algorithm.
+Finally Section \ref{section:conclusion} discusses the future
+potential of this approach.
+
+
+
+
+

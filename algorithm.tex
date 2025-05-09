@@ -1,0 +1,60 @@
+\section{Algorithm}
+\label{section:algorithm}
+
+\mbsays{Please have a go at the text and finish where unfinished}
+
+This section gives a semi-decision procedure for polynomial integer
+equations.
+%
+It is based on the following two elementary observations:
+%
+\begin{enumerate}
+\item{If a set of equations is satisfiable over the integers then it
+  will be satisfiable modulo any number.  We use the converse -- if a
+  set of equations is unsatisfiable over a specific modulus then it
+  must be unsatifiable over the integers.}
+\item{If a set of equations is solvable modulo $p$ and $q$ with $p$ and
+  $q$ are coprime then they will be solvable modulo $p*q$.  This is a
+  consequence of the Chinese Remainder Theorem.}
+\end{enumerate}
+%
+These are used to create an abstraction-refinement loop using a pair
+of solvers.  One computes the solutions modulo a product of primes
+(giving an over-approximation of the true satisfying assignments) and
+the other checks these candidates.
+%
+The algorithm consists of a loop of four phases, illustrated in Figure
+\ref{figure:algorithm}
+
+\begin{description}
+  \item[Pick Prime]{}
+  \item[Solve Modulo Subproblems]{}
+  \item[Extract Candidates]{}
+  \item[Check Candidates]{}
+\end{description}
+\mbsays{Fill in the description}
+
+\begin{figure*}
+  \caption{A semi-decision procedure for polynomial integer equations.}
+  \label{figure:algorithm}.
+\end{figure*}
+\mbsays{Create a flow-chart of the phases.  I can do this if you don't
+feel like doing it}
+
+
+
+\mbsays{If have a worked example and want to include it, here would be
+  good.}
+
+
+We should probably say something about correctness, complexity or completeness.
+That might be ``We don't know''. \mbsays{Think about this.}
+
+I think there are theorems which says something like:
+\begin{itemize}
+\item{This is a semi-decision procedure (if it terminates then it is correct)}
+\item{If all of the variables are bounded so they have a finite range
+  then the algorithm will terminate}
+\end{itemize}
+but I am unsure if we will have time to prove these.
+
