@@ -1,8 +1,6 @@
 \section{Algorithm}
 \label{section:algorithm}
 
-\mbsays{Please have a go at the text and finish where unfinished}
-
 This section gives a semi-decision procedure for polynomial integer
 equations.
 %
@@ -14,7 +12,7 @@ It is based on the following two elementary observations:
   set of equations is unsatisfiable over a specific modulus then it
   must be unsatifiable over the integers.}
 \item{If a set of equations is solvable modulo $p$ and $q$ with $p$ and
-  $q$ are coprime then they will be solvable modulo $p*q$.  This is a
+  $q$ being coprime then they will be solvable modulo $p*q$.  This is a
   consequence of the Chinese Remainder Theorem.}
 \end{enumerate}
 %
@@ -27,12 +25,17 @@ The algorithm consists of a loop of four phases, illustrated in Figure
 \ref{figure:algorithm}
 
 \begin{description}
-  \item[Pick Prime]{}
-  \item[Solve Modulo Subproblems]{}
-  \item[Extract Candidates]{}
-  \item[Check Candidates]{}
+  \item[Pick Prime]{The next prime number $p$ from the list of
+  ascending primes is picked. On the first iteration, $p = 2$}
+  \item[Solve Modulo Subproblems]{The original equation is reduced modulo 
+  $p$ by applying mod $p$ to each term individually}
+  \item[Extract Candidates]{If satisfiable, candidate values for each variable 
+  in the subproblem are extracted from the solver}
+  \item[Check Candidates]{The Chinese Remainder Thoerem is used to compute
+  several new candidates for each variable based on the previously extracted 
+  candidates. Each possible combination of candidate values is checked for 
+  satisfiability against the original problem}
 \end{description}
-\mbsays{Fill in the description}
 
 \begin{figure*}
   \caption{A semi-decision procedure for polynomial integer equations.}
@@ -40,12 +43,12 @@ The algorithm consists of a loop of four phases, illustrated in Figure
 \end{figure*}
 \mbsays{Create a flow-chart of the phases.  I can do this if you don't
 feel like doing it}
-
+\mmsays{I will prioritise the other tasks. In the meantime, I will add
+a hand-drawn flowchart to the repo}
 
 
 \mbsays{If have a worked example and want to include it, here would be
   good.}
-
 
 We should probably say something about correctness, complexity or completeness.
 That might be ``We don't know''. \mbsays{Think about this.}
@@ -57,4 +60,3 @@ I think there are theorems which says something like:
   then the algorithm will terminate}
 \end{itemize}
 but I am unsure if we will have time to prove these.
-

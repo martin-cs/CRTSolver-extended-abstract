@@ -1,27 +1,32 @@
 \section{Results}
-
-\mbsays{Please help fill in the gaps and finish the text.  There doesn't need to be much test.}
+\label{section:results}
 
 We have implemented the algorithm in Section \ref{section:algorithm}
 in a tool called \texttt{CRTSolver} which is available at
-\url{https://whatever} under LICENSE-GOES-HERE.
+\url{https://github.com/maheenmatin/CRTSolver} under LICENSE-GOES-HERE.
 %
 It uses two instances of cvc5, one to solve the modulo sub-problems
 and a second to check the candidate results.  The following options
-are available \mbsays{Describe the options that will be compared here,
-such as BV or Integer for the modulo sub-problems.}
+are available: Integer Mode and Bit-Vector Mode. 
 
-We\mbsays{I tend to write in the ``active plural'', as in ``We have
-  done this''.  Not everyone likes this.  Some people prefer to write
-  in a passive tense ``\dots has been done''.  Pick whichever one you
-  like and use it.} have created a set of benchmarks that \mbsays{describe the
+Integer Mode attempts to
+solve the modulo subproblem using the theory of Quantifier-Free Nonlinear
+Integer Arithmetic, where the variables are of integer sort and integer
+operations are used. 
+
+Bit-Vector Mode uses the theory of Quantifier-Free
+Bit-Vector Logic, where the variables are of bit-vector sort (with a fixed
+bit-width calculated as a function of the current prime) and bit-vector
+operations are used. 
+
+We have created a set of benchmarks that \mbsays{describe the
   benchmarks, what are they proving, what are the parameters, etc.
   This should be enough that the columns in the result table make sense.}
 
 In Table \ref{table:results} we give a comparison with \mbsays{Say
   which solver and cite the relevant paper -- see their websites for
   which one}.
-\mbsays{Describe the experimental set up : what hardware/processor, what operating system, what solver versions,  what time and memory limits.}
+\mbsays{Describe the experimental set up: what hardware/processor, what operating system, what solver versions,  what time and memory limits.}
 \mbsays{ If a solver times out
 put T/O in the time, if it is out of memory put M/O, if it returns
 UNKNOWN then put U.  You need to say here in the paper this is what
