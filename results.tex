@@ -13,15 +13,23 @@ Integer Mode attempts to
 solve the modulo subproblem using the theory of Quantifier-Free Nonlinear
 Integer Arithmetic, where the variables are of integer sort and integer
 operations are used. 
-
 Bit-Vector Mode uses the theory of Quantifier-Free
 Bit-Vector Logic, where the variables are of bit-vector sort (with a fixed
 bit-width calculated as a function of the current prime) and bit-vector
-operations are used. 
+operations are used.
+For the checking of candidate results, the theory of Quantifier-Free
+Nonlinear Integer Arithmetic is used for both Integer Mode and Bit-Vector
+Mode.
 
-We have created a set of benchmarks that \mbsays{describe the
-  benchmarks, what are they proving, what are the parameters, etc.
-  This should be enough that the columns in the result table make sense.}
+We have created a set of benchmarks that evaluate the performance of CRTSolver 
+in both available modes on non-linear integer equations, in comparison with two
+widely used and state-of-the-art SMT solvers, Z3 and cvc5.
+The benchmarks are time and success rate, where time simply refers to the total runtime
+for a given equation in milliseconds. We define a successful solving of a given
+equation as termination with \texttt{SAT} or \texttt{UNSAT} - if a solver terminates
+with \texttt{UNKNOWN} due to time constraints, memory constraints, or internal error,
+then we define this as an unsuccessful solving.
+
 
 In Table \ref{table:results} we give a comparison with \mbsays{Say
   which solver and cite the relevant paper -- see their websites for
@@ -35,14 +43,14 @@ These results are also shown in a cactus plot in Figure \ref{figure:cactus-plot}
 
 
 \begin{table*}
-  \caption{Performance Comparison between CRTSolver and ... }
+  \caption{Performance Comparison between CRTSolver, Z3 and cvc5.}
   \label{table:results}
   \begin{tabular}{ccccccccc}
     \toprule
-    Variables & Equations & Degree & SAT & Iterations & CRT Time w/ Integer & CRT Time w/ BV & cvc5 & z3 \\
+    Equation & Variables & Degree & SAT & CRT-INT & CRT-BV & Z3 & cvc5 \\
     \midrule
-    ? & ? & ? & ? & ? & ? & ? & ? & ? \\
-    ? & ? & ? & ? & ? & ? & ? & ? & ? \\
+    ? & ? & ? & ? & ? & ? & ? & ? \\
+    ? & ? & ? & ? & ? & ? & ? & ? \\
   \bottomrule
 \end{tabular}
 \end{table*}
@@ -50,8 +58,11 @@ These results are also shown in a cactus plot in Figure \ref{figure:cactus-plot}
   maybe \url{https://www.tablesgenerator.com/}.}
 
 \begin{figure*}
+    \vspace{4em}
+    \centering
+    \includegraphics[width=1.0\linewidth]{cactus.pdf}
   \caption{A cactus plot of the results.}
-  \label{figure:cactus-plot}.
+  \label{figure:cactus-plot}
 \end{figure*}
 \mbsays{Create the cactus plot}
 
