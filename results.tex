@@ -31,17 +31,36 @@ with \texttt{UNKNOWN} due to time constraints, memory constraints, or internal e
 then we define this as an unsuccessful solving.
 
 
-In Table \ref{table:results} we give a comparison with \mbsays{Say
-  which solver and cite the relevant paper -- see their websites for
-  which one}.
-\mbsays{Describe the experimental set up: what hardware/processor, what operating system, what solver versions,  what time and memory limits.}
-\mbsays{ If a solver times out
-put T/O in the time, if it is out of memory put M/O, if it returns
-UNKNOWN then put U.  You need to say here in the paper this is what
-they mean.}
+\mmsays{Added Harvard in-text citation
+and @inproceedings in .bib}
+
+In Table \ref{table:results} we give a comparison with Z3 (de Moura and Bj{\o}rner, 2008) and 
+cvc5 (Barbosa et al., 2022). 
+The performance evaluation was conducted using a Juypter Notebook file on Visual Studio Code (version 1.100).
+WSL2 (Ubuntu) was used on a Windows 11 Home (version 10.0.26100) PC with an Intel i5-11400 processor and 
+16GB of RAM. The respective Python APIs for the latest versions of Z3 (version 4.14.1.0) and cvc5 
+(version 1.2.1) at the time of testing were used.
+
+All solvers had their available memory limited to 4GB and were given the same time-out value 
+(the time limit for each \texttt{check-sat}) of 10000 milliseconds. They were all given the same 30 test 
+files, which were in the form of SMT2 files containing non-linear integer equations. Files were divided into 3 
+groups: equations involving 1 variable, equations involving 2 variables and equations involving 3 variables. 
+Each of these groups contained sub-groups of quadratic and cubic equations. There was a mixture of both 
+satisfiable and unsatisfiable equations - however, there was a slight bias for the frequency of unsatisfiable 
+cubic equations as these were found to be the most demanding equations, thus making them especially suitable 
+for evaluating performance.
+
+For each equation, we give the full mathematical representation, as well as the number of variables present,
+the degree, and whether or not the equation is satisfiable. CRTSolver's Integer Mode and Bit-Vector mode have
+been represented using the column headings \texttt{CRT-INT} and \texttt{CRT-BV} respectively. For each solver,
+the time taken for the equation is given. If the solver was successful in solving the given 
+equation, we simply provide the time taken in milliseconds. However, the solver may be unsuccessful due to
+a number of reasons, therefore terminating with \texttt{UNKNOWN}. In the case of exceeding the time-out value,
+we denote this with \texttt{T/O} and in the case of exceeding memory constraints, we denote this with 
+\texttt{M/O}. Finally, in the case of integer overflow during solving, we denote this with \texttt{I/O}.
 These results are also shown in a cactus plot in Figure \ref{figure:cactus-plot}.
 
-
+\mmsays{Let me know you're satisfied with the table. If so, I'll fill in the rows}
 \begin{table*}
   \caption{Performance Comparison between CRTSolver, Z3 and cvc5.}
   \label{table:results}
@@ -49,13 +68,11 @@ These results are also shown in a cactus plot in Figure \ref{figure:cactus-plot}
     \toprule
     Equation & Variables & Degree & SAT & CRT-INT & CRT-BV & Z3 & cvc5 \\
     \midrule
-    ? & ? & ? & ? & ? & ? & ? & ? \\
+    $3x^2 + 7x + 8 = 0$ & 1 & 2 & No & T/O & 15.053 & 4.045 & 9.739 \\
     ? & ? & ? & ? & ? & ? & ? & ? \\
   \bottomrule
 \end{tabular}
 \end{table*}
-\mbsays{Fill in the table.  Either use a program to generate it or
-  maybe \url{https://www.tablesgenerator.com/}.}
 
 \begin{figure*}
     \vspace{4em}
@@ -64,9 +81,7 @@ These results are also shown in a cactus plot in Figure \ref{figure:cactus-plot}
   \caption{A cactus plot of the results.}
   \label{figure:cactus-plot}
 \end{figure*}
-\mbsays{Create the cactus plot}
 
-These result suggest that \mbsays{Write a paragraph or so about things
-we can conclude.  For example, CRTSolver with bit-vectors is way
-faster than with integer, they are both much faster than the other
-solvers, there is a difference between SAT and UNSAT, etc. etc.}
+These results suggest that there using CRTSolver realistic potential in using CRTSolver in Bit-Vector Mode
+as a solver that offers equal or better performance than existing solvers for non-linear
+integer equations. However, the Integer Mode of CRTSolver can be safely concluded as having no real potential.

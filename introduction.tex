@@ -9,11 +9,13 @@ In the case of non-linear expressions over theory of integers this
 floor is not always met.
 %
 For example consider the following problem: 
-% inline: $-5x^2 + 7x + 1 = 0$
-\[-5x^2 + 7x + 1 = 0\]
+% inline: $2x^3 + 3x^2 + 6x + 8 = 0$
+\[2x^3 + 3x^2 + 6x + 8 = 0\]
 
-In our experiments we found that both Z3 and cvc5 timed out after 30 
-seconds but observing that small integers (i.e. $0$, $\pm 1$, $\pm 2$)
+\mmsays{only cvc5 times out on this equation, not Z3. There are no equations
+for which Z3 times out and CRTSolver doesn't}
+In our experiments we found that cvc5 timed out after 30 
+seconds but observing that small integers (i.e. $0$, $1$, $-1$)
 result in outputs greater than or less than zero - but never exactly
 zero, will allow many humans to solve it faster.
 
