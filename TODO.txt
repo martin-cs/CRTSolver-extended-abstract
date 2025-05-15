@@ -1,20 +1,23 @@
 Things We Need to Do
 ====================
 
-* Results table
+* Results table - DONE
   remove the actual equation
   SAT column should say SAT or UNSAT
-  time in seconds, more than 1 sec -> use 3 decimal places, if it is less than 1s write in scientific notation with 3 sig. fig.
+  time in seconds, more than 1 sec -> use 3 decimal places, if it is less than 1s write in 
+    scientific notation with 3 sig. fig.
   I/O should have time with it
 
-* Cactus plot
-  for each solver, take just the runs which give SAT or UNSAT, sort them by asceding run-time and plot number of problems solved
+* Cactus plot - DONE
+  for each solver, take just the runs which give SAT or UNSAT, sort them by asceding run-time 
+    and plot number of problems solved
 
-* Pick a license
+* Pick a license - DONE
 
-* Tag the version of the code use to make the results.
+* Tag the version of the code use to make the results. - DONE
 
-* Find out why the CRTSolver is timing out on some of the benchmarks -- is it the modulo computation or the candidates?
+* Find out why the CRTSolver is timing out on some of the benchmarks -- is it the modulo computation 
+  or the candidates?
 
 * Try out changing the candidate checking to use disjunctions (see e-mail)
 
