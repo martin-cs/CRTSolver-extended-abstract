@@ -16,15 +16,16 @@ Things We Need to Do
 
 * Tag the version of the code use to make the results. - DONE
 
-* Find out why the CRTSolver is timing out on some of the benchmarks -- is it the modulo computation 
-  or the candidates?
+* Find out why the CRTSolver is timing out on some of the benchmarks -- is it the modulo computation or the candidates? -- Neither, with a slightly increased time out limit there is no issue.
 
-* Try out changing the candidate checking to use disjunctions (see e-mail)
+* Put in a guard and stop just before the integer overflow and return unknown.  In the results table mark this "U (7.10*10^{-2})"
 
 * Tests for multiple equations
   number of equations 1 to 5
   degrees 2 to 6
   variables 1 to 6
+
+* Try out changing the candidate checking to use disjunctions (see e-mail)
 
 * Verify these examples
 
