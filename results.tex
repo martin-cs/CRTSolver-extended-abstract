@@ -30,19 +30,16 @@ equation as termination with \texttt{SAT} or \texttt{UNSAT} - if a solver termin
 with \texttt{UNKNOWN} due to time constraints, memory constraints, or internal error,
 then we define this as an unsuccessful solving.
 
-
-\mmsays{Added Harvard in-text citation
-and @inproceedings in .bib}
-
-In Table \ref{table:results} we give a comparison with Z3 (de Moura and Bj{\o}rner, 2008) and 
-cvc5 (Barbosa et al., 2022). 
+In Table \ref{table:results} we give a comparison with Z3 \cite{10.1007/978-3-540-78800-3_24} and cvc5 \cite{DBLP:conf/tacas/BarbosaBBKLMMMN22}.
 The performance evaluation was conducted using a Juypter Notebook file on Visual Studio Code (version 1.100).
 WSL2 (Ubuntu) was used on a Windows 11 Home (version 10.0.26100) PC with an Intel i5-11400 processor and 
 16GB of RAM. The respective Python APIs for the latest versions of Z3 (version 4.14.1.0) and cvc5 
 (version 1.2.1) at the time of testing were used.
 
+\mbsays{Check these details}
 All solvers had their available memory limited to 4GB and were given the same time-out value 
-(the time limit for each \texttt{check-sat}) of 10 seconds. They were all given the same 30 test 
+(the time limit for each \texttt{check-sat}) of 10 seconds.
+They were all given the same 30 test 
 files, which were in the form of SMT2 files containing non-linear integer equations. Files were divided into 3 
 groups: equations involving 1 variable, equations involving 2 variables and equations involving 3 variables. 
 Each of these groups contained sub-groups of quadratic and cubic equations. There was a mixture of both 
@@ -51,6 +48,7 @@ cubic equations as these were found to be the most demanding equations, thus mak
 for evaluating performance.
 
 \mmsays{Should we mention the integer overflow error to this extent?}
+\mbsays{Check that the notation here matches the table}
 For each equation, we give the number of variables present, the degree, and whether or not the equation is 
 satisfiable. CRTSolver's Integer Mode and Bit-Vector mode have been represented using the column headings 
 \texttt{CRT-INT} and \texttt{CRT-BV} respectively. For each solver, the time taken for the equation is given. 
@@ -123,3 +121,5 @@ $(x+23)^3 + (y-51)^3 + (z+39)^3 = -43$
 These results suggest that there using CRTSolver realistic potential in using CRTSolver in Bit-Vector Mode
 as a solver that offers equal or better performance than existing solvers for non-linear
 integer equations. However, the Integer Mode of CRTSolver can be safely concluded as having no real potential.
+\mbsays{Rewrite when results are available.}
+
