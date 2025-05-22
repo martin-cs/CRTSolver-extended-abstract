@@ -1,7 +1,5 @@
 \section{Introduction}
 
-\mmsays{Please do check the intro and make/propose changes as necessary}
-
 A reasonable performance floor for SMT solvers is that they should be
 faster than a human solving the same problem with a pen and paper.
 %
@@ -12,19 +10,18 @@ For example consider the following problem:
 % inline: $2x^3 + 3x^2 + 6x + 8 = 0$
 \[2x^3 + 3x^2 + 6x + 8 = 0\]
 
-\mmsays{only cvc5 times out on this equation, not Z3. There are no equations
-for which Z3 times out and CRTSolver doesn't}
 In our experiments we found that cvc5 timed out after 30 
-seconds but observing that small integers (i.e. $0$, $1$, $-1$)
-result in outputs greater than or less than zero - but never exactly
-zero, will allow many humans to solve it faster.
+seconds.
+Observing that all coefficients are positive including the
+constant so $x$ must be strictly negative and then trying decreasing
+values ($x = -1, x = -2, \dots$) gives an answer very quickly.
 
-The undecidability of non-linear integer equations is a characteristic
-determined by Hilbert's tenth problem and the subsequent MRDP theorem 
-(also known as Matiyasevich's theorem). Hilbert's tenth problem asks 
-if there is a general formula that, for a given Diophantine equation 
-(a polynomial equation possessing only integer coefficients), can 
-determine the existence of an integer solution.
+Hilbert's tenth problem asked (in modern terminology) whether 
+there is an decision procedure for Diophantine equations 
+(a polynomial equation possessing only integer coefficients).
+%
+The MRDP theorem gives a construction from recursively enumerable sets
+to Diophantine equations, thus showing the undecideability of satisfiability.
 
 This has an immediate practical consequence of their being no
 algorithms for the general case but we also believe that it has had
