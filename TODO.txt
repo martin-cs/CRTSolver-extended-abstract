@@ -32,3 +32,17 @@ Things We Need to Do
 * Try changing the modulo computation to use multi-precision / big integers so that it doesn't overflow.
 
 
+~~~~~
+
+Final bits
+
+* Fix the issue with bit widths.
+
+* Run a final set of results on the original 30, as many of the others as you can, ideally with the multiple equation benchmarks.
+
+* Get the tables and cactus plots into the paper.
+
+* Any proof reading and other text tweaks done.
+
+
+
