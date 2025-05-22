@@ -40,13 +40,18 @@
   \node [phasestyle] (Candidates) at (candidates) {Candidates};
   \node [phasestyle] (Check) at (check) {Check};
 
-  
+  % Results
   \tikzset{resultstyle/.style = {shape=ellipse}}%draw, minimum width=1.5cm}}
 
   \node [resultstyle] (Sat) at (sat) {SAT};
   \node [resultstyle] (Unsat) at (unsat) {UNSAT};
+
+  \tikzset{resultstyle/.style = {draw, -triangle 60}}
   
+  \path [resultstyle] (Solvemod.west) -> (Unsat.east);
+  \path [resultstyle] (Check.east) -> (Sat.west);
   
+  % Connecting arrows
   \tikzset{arrowstyle/.style = {-triangle 60, draw}}
 
   \path [arrowstyle] (Selectmod.south) -> (Solvemod.north);
@@ -54,13 +59,10 @@
   \path [arrowstyle] (Candidates.north) -> (Check.south);
   \path [arrowstyle] (Check.west) -> (Selectmod.east);
 
+  \path (Selectmod.north east) ++(0,1.5) coordinate (above);
+  \path [arrowstyle] (above) -> (Selectmod.north east);
   
-  \tikzset{resultstyle/.style = {draw, -triangle 60}}
-  
-  \path [resultstyle] (Solvemod.west) -> (Unsat.east);
-  \path [resultstyle] (Check.east) -> (Sat.west);
-
-  
+  % Formula flow
   \tikzset{formpath/.style = {draw, dashed, -triangle 60}}
   
   \node (Form) at (form) {Formula};

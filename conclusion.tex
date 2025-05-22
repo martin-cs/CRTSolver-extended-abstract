@@ -13,10 +13,34 @@ There are many open questions and possible future directions for this work:
 
 \begin{itemize}
 %\item{We select primes sequentially, is that the best thing to do or are there better strategies given the encoding, the constants in the problem, how previous candidates have failed, etc.}
-\item{Selection of modulo is an }
+\item{Using ascending primes as modulo is correct but neglects various
+  potential optimisations.  For example primes of the form $2^n \pm k$
+  for small $k$ allow for efficient computation of bit-vector
+  remainder.  Also some moduli simplify various powers, for example
+  $x^4 mod 20$ can only have one of four possible values.}
 
-\item{Are there better encodings for solving the modulo sub problems in the BV solver?}
-\item{How many candidates should be checked, how should they be picked?}
-\item{Can the failed candidates be used to improve the modulo sub problems?}
-\item{Can this technique be extended to non-equalities ($\not=$), inequalities ($\leq$) and non-polynomial expressions?}
+\item{There are a range of approaches to encoding the modulo
+  equations.
+  %
+  If bit-vectors are used there are questions about what
+  bit-widths are used and how often modulo reductions are performed.
+  There are a range of techniques used to optimise the performance of
+  cryptographic primitives that might be used.
+  %
+  Alternatively the finite field solver of cvc5 might be an option.}
+  
+\item{The selection of candidates can likely be improved through
+  caching partially successful and unsuccessful candidates.
+  Alternatively computation of candidates could be treated as a
+  separate non-linear sub-problem, similarly to the handling of
+  quantifiers in MBQI.}
+
+\item{The current algorithm takes minimal information from the failed
+  candidates to inform the selection of a new modulus.  This is an
+  area that can clearly be strengthened to better fit with the
+  abstraction-refinement style of the algorithm.}
+
+\item{Moving beyond equations, can this technique be extended to
+  non-equalities ($\not=$), inequalities ($\leq$) and non-polynomial
+  expressions?}
 \end{itemize}

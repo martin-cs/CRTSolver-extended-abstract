@@ -37,7 +37,7 @@ The algorithm consists of a loop of four phases, illustrated in Figure
 \item[Select]{A new modulo $m_i$, co-prime with all previous modulos is chosen.
 We currently use an ascending list of primes, starting from $m_0 = 2$.}
 
-\item[Solve]{A copy of the set of equations computed $mod m_i$ is added
+\item[Solve]{A copy of the set of equations computed $mod\ m_i$ is added
   to the modulo solver.  Then the modulo solver is checked for
   satisfiability.  If it is unsatisfiable then the equations are unsolvable
   modulo in at least one of $m_i$'s and thus the original problem is
