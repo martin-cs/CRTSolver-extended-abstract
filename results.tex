@@ -39,7 +39,7 @@ WSL2 (Ubuntu) was used on a Windows 11 Home (version 10.0.26100) PC with an Inte
 All solvers had their available memory limited to 4GB and were given the same time-out value 
 (the time limit for each \texttt{check-sat}) of 10 seconds.
 They were all given the same 38 test 
-files, which were in the form of SMT2 files containing non-linear integer equations. Files were divided into four 
+files, which were in the form of SMT-LIB2 files containing non-linear integer equations. Files were divided into four 
 groups: equations involving 1 variable, equations involving 2 variables and equations involving 3 variables and sets of equations. 
 Each of these groups contained sub-groups of quadratic and cubic equations. There was a mixture of both 
 satisfiable and unsatisfiable equations - however, there was a slight bias for the frequency of unsatisfiable 
@@ -47,7 +47,7 @@ cubic equations as these were found to be the most demanding equations, thus mak
 for evaluating performance.
 
 %\mmsays{Should we mention the integer overflow error to this extent?}
-For each equation, we give the number of variables present, the degree, and whether or not the equation is 
+For each SMT-LIB file, we give the number of variables present, the degree, the number of equations and whether or not the file is 
 satisfiable. CRTSolver's Integer Mode and Bit-Vector mode have been represented using the column headings 
 \texttt{CRT-INT} and \texttt{CRT-BV} respectively. For each solver, the time taken for the equation is given. 
 If the solver was successful in solving the given equation, we simply provide this in seconds. Where
