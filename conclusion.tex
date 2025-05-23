@@ -1,23 +1,31 @@
 \section{Conclusion}
 \label{section:conclusion}
 
-\mbsays{Write when results are available}
+%It works (on the limited set of benchmarks we have tried).
 %
-It works (on the limited set of benchmarks we have tried).
+%It shows enough promise to be investigated further.
+%We want to try to implement it in an actual solver.
+
+In this work we have demonstrated the principle of using results from
+the literature on Diophantine equations to build simple semi-decision
+procedures for fragments of the theory of integers.
 %
-It shows enough promise to be investigated further.
-We want to try to implement it in an actual solver.
+This gives results that match or exceed the state-of-the-art, despite
+being significantly simpler and much less mature implementations.
+%
+We regard this as an effective proof-of-concept for the general approach.
+
 
 
 There are many open questions and possible future directions for this work:
 
 \begin{itemize}
 %\item{We select primes sequentially, is that the best thing to do or are there better strategies given the encoding, the constants in the problem, how previous candidates have failed, etc.}
-\item{Using ascending primes as modulo is correct but neglects various
+\item{Using ascending primes as moduli is correct but neglects various
   potential optimisations.  For example primes of the form $2^n \pm k$
   for small $k$ allow for efficient computation of bit-vector
   remainder.  Also some moduli simplify various powers, for example
-  $x^4 mod 20$ can only have one of four possible values.}
+  $x^4 mod\ 20$ can only have one of four possible values.}
 
 \item{There are a range of approaches to encoding the modulo
   equations.
@@ -27,7 +35,7 @@ There are many open questions and possible future directions for this work:
   There are a range of techniques used to optimise the performance of
   cryptographic primitives that might be used.
   %
-  Alternatively the finite field solver of cvc5 might be an option.}
+  Alternatively the theory of finite fields in cvc5 might be an option.}
   
 \item{The selection of candidates can likely be improved through
   caching partially successful and unsuccessful candidates.

@@ -26,9 +26,9 @@ It is based on the following two elementary observations:
 \end{enumerate}
 %
 These are used to create an abstraction-refinement style loop using a pair
-of solvers.  One computes the solutions modulo a product of primes
-(giving an over-approximation of the true satisfying assignments) and
-the other checks these candidates.
+of solvers.  One solver computes the solutions to a series of modulo
+sub problems (giving an over-approximation of the true satisfying
+assignments) and the other uses these to construct and check candidates.
 %
 The algorithm consists of a loop of four phases, illustrated in Figure
 \ref{figure:algorithm}:

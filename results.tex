@@ -5,17 +5,17 @@ We have implemented the algorithm in Section \ref{section:algorithm}
 in a tool called \texttt{CRTSolver} which is available at
 \url{https://github.com/maheenmatin/CRTSolver} under the MIT license.
 %
-It uses two instances of cvc5, one to solve the modulo sub-problems
+It uses two instances of cvc5 \cite{DBLP:conf/tacas/BarbosaBBKLMMMN22}, one to solve the modulo sub-problems
 and a second to check the candidate results.  The following options
 are available: Integer Mode and Bit-Vector Mode. 
 
 Integer Mode attempts to
-solve the modulo subproblem using the theory of Quantifier-Free Nonlinear
+solve the modulo subproblems using the theory of Quantifier-Free Nonlinear
 Integer Arithmetic, where the variables are of integer sort and integer
 operations are used. 
 Bit-Vector Mode uses the theory of Quantifier-Free
 Bit-Vector Logic, where the variables are of bit-vector sort (with a fixed
-bit-width calculated as a function of the current prime) and bit-vector
+bit-width calculated as a function of the current modulo) and bit-vector
 operations are used.
 For the checking of candidate results, the theory of Quantifier-Free
 Nonlinear Integer Arithmetic is used for both Integer Mode and Bit-Vector
@@ -36,19 +36,17 @@ WSL2 (Ubuntu) was used on a Windows 11 Home (version 10.0.26100) PC with an Inte
 16GB of RAM. The respective Python APIs for the latest versions of Z3 (version 4.14.1.0) and cvc5 
 (version 1.2.1) at the time of testing were used.
 
-\mbsays{Check these details}
 All solvers had their available memory limited to 4GB and were given the same time-out value 
 (the time limit for each \texttt{check-sat}) of 10 seconds.
-They were all given the same 30 test 
-files, which were in the form of SMT2 files containing non-linear integer equations. Files were divided into 3 
-groups: equations involving 1 variable, equations involving 2 variables and equations involving 3 variables. 
+They were all given the same 38 test 
+files, which were in the form of SMT2 files containing non-linear integer equations. Files were divided into four 
+groups: equations involving 1 variable, equations involving 2 variables and equations involving 3 variables and sets of equations. 
 Each of these groups contained sub-groups of quadratic and cubic equations. There was a mixture of both 
 satisfiable and unsatisfiable equations - however, there was a slight bias for the frequency of unsatisfiable 
 cubic equations as these were found to be the most demanding equations, thus making them especially suitable 
 for evaluating performance.
 
-\mmsays{Should we mention the integer overflow error to this extent?}
-\mbsays{Check that the notation here matches the table}
+%\mmsays{Should we mention the integer overflow error to this extent?}
 For each equation, we give the number of variables present, the degree, and whether or not the equation is 
 satisfiable. CRTSolver's Integer Mode and Bit-Vector mode have been represented using the column headings 
 \texttt{CRT-INT} and \texttt{CRT-BV} respectively. For each solver, the time taken for the equation is given. 
@@ -56,10 +54,16 @@ If the solver was successful in solving the given equation, we simply provide th
 the runtime is greater than or equal to 1 second it is represented with 3 decimal places, and if less 
 than 1 second it is represented in scientific notation with 3 significant figures. 
 However, the solver may be unsuccessful due to
-a number of reasons, therefore terminating with \texttt{UNKNOWN}. In the case of exceeding the time-out value,
+a number of reasons, therefore terminating with \texttt{UNKNOWN}.
+%
+In the case of exceeding the time-out value,
 we denote this with \texttt{T/O} - note that in every such instance the runtime is equal to the 
-time-out value of 10 seconds. Finally, in the case of integer overflow during solving, we denote this 
-with \texttt{U} and provide the runtime before termination with integer overflow.
+time-out value of 10 seconds.
+%
+Finally, we have a limit on the number of moduli used in CRTSolver to
+ensure prompt termination in the cases of equations solvable for every
+modulo.
+Reaching this is denoted with \texttt{U} and the time taken.
 These results are also shown in a cactus plot in Figure \ref{figure:cactus-plot}.
 All results were produced using v1.1.0 of CRTSolver.
 
@@ -128,5 +132,17 @@ $(x+23)^3 + (y-51)^3 + (z+39)^3 = -43$
 
 These results suggest that there using CRTSolver realistic potential in using CRTSolver in Bit-Vector Mode
 as a solver that offers equal or better performance than existing solvers for non-linear
-integer equations. However, the Integer Mode of CRTSolver can be safely concluded as having no real potential.
-\mbsays{Rewrite when results are available.}
+integer equations. However, the Integer Mode of CRTSolver does not
+show significant potential.
+%
+The excellent performance of Z3 is due to them factoring polynomials
+(using modulo arithmetic and lifting) as a preprocessing step.  In the
+case of single equations this gives broadly equivalent results.
+However in the case of larger sets of equations, CRTSolver will be
+able to propagate information about possible solutions between
+equations which should result in being able to solve problems that Z3
+cannot.
+%
+Future experimental work aims to understand and quantify this
+advantage.
+
