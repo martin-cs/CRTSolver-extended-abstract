@@ -1,48 +1,100 @@
 Things We Need to Do
 ====================
 
-* Results table - DONE
-  remove the actual equation
-  SAT column should say SAT or UNSAT
-  time in seconds, more than 1 sec -> use 3 decimal places, if it is less than 1s write in 
-    scientific notation with 3 sig. fig.
-  I/O should have time with it
+****Review 1****
+Q. In the description of Candidates: what does "plus $k\Pi m_i$ mean?
+A. For Martin to clarify - I think this is a typo.
 
-* Cactus plot - DONE
-  for each solver, take just the runs which give SAT or UNSAT, sort them by asceding run-time 
-    and plot number of problems solved
-
-* Pick a license - DONE
-
-* Tag the version of the code use to make the results. - DONE
-
-* Find out why the CRTSolver is timing out on some of the benchmarks -- is it the modulo computation or the candidates? -- Neither, with a slightly increased time out limit there is no issue.
-
-* Put in a guard and stop just before the integer overflow and return unknown.  In the results table mark this "U (7.10*10^{-2})"
-
-* Tests for multiple equations
-  number of equations 1 to 5
-  degrees 2 to 6
-  variables 1 to 6
-
-* Try out changing the candidate checking to use disjunctions (see e-mail)
-
-* Verify these examples
-
-* Try changing the modulo computation to use multi-precision / big integers so that it doesn't overflow.
+Q. What should be done about inequalities?
+A. For Martin to either request programmatic implementation of inequalities in the next 
+   iteration of CRTSolver, or sufficiently address potential ideas in the "Conclusion" section.
 
 
-~~~~~
+****Review 2****
+Q. For benchmarking, I recommend taking a look at https://arxiv.org/abs/2108.08705
+A. Low-priority task due to ambiguity and complexity.
 
-Final bits
+Q. Intro, line 2: "over theory" -> missing "the".
+A. DONE.
 
-* Fix the issue with bit widths.
+Q, Intro: "is an decision procedure" -> "a".
+A. DONE.
 
-* Run a final set of results on the original 30, as many of the others as you can, ideally with the multiple equation benchmarks.
+Q. Intro: Citations needed for the MRDP theorem and for "many powerful results".
+A. DONE.
 
-* Get the tables and cactus plots into the paper.
+Q. Section 2: "in at least one of" -- delete "in".
+A. DONE
 
-* Any proof reading and other text tweaks done.
+Q. Section 2: "a number of candidates over Z" --> perhaps this can be elaborated -- what 
+  candidates / how many?
+A. For Martin to clarify - I believe this is a reference to the "offsets" placed on the candidates.
+
+Q. Section 3: It would be nice to have some details regarding how you "created a set of benchmarks".
+A. Low-priority task since we will create a program for benchmark creation, so whatever answer
+   we provide at this stage will soon change.
+
+Q. Section 3: "The benchmarks are time and success rate" does not sound right.
+A. For Martin to decide how we address this point.
+
+Q. Section 3: the citations to cvc5 and z3 should appear in their first occurrence.
+A. DONE
+
+Q. Section 3: "equations involving 3 variables and sets of equations" does not sound right.
+A. For Martin to decide how we address this point.
+
+Q. Section 3: milliseconds are probably less interesting than aggregate data regarding number of 
+  solved / unique instances.
+A. For Martin to decide if a "totals" row would be beneficial in order to address this point and for
+   general readability of the results.
+
+Q. Section 3: "there using CRTSolver realistic" -- "using CRTSolver" should be "is a".
+A. DONE
 
 
+****Review 3****
+Q. Details are missing about the algorithm. The heuristics for checking candidate is not clearly explained.
+Given a base solution modulo M, this heuristics considers adding multiples of M to the base solution as 
+candidates. It's not clear how this is done. Does it add different multiples of M to each variables
+(which would be exponential in the number of variables) or does it add the same multiple to each variable?
+In any case, data about the effectiveness of this heuristic should be added to the experimental section.
+A. For Martin to clarify.
 
+Q. The general approach looks suboptimal. For example, it looks inefficient to use an SMT solver to check 
+candidates since this can be done by just evaluating polynomials at a point. Also, the description implies 
+that new constraints are added to the "modulo solver" for each m_i. This also looks suboptimal, as each 
+sub-problem (solving modulo m_i for some i) is independent of the others. It should then be enough to 
+remember past candidates modulo M = m_1 ... m_{I-1} then
+get a solution modulo m_i (with one call to the solver) and combine past candidates and new solution 
+using the CRT.
+A. For Martin to address the value of this idea.
+
+Q. Another limitation is that there may be several solutions modulo each m_i but the algorithm does 
+not use this fact.
+A. For Martin to address the value of this idea.
+
+Q. The experimental section is not very deep. The number of problems is not very large and all have a small 
+number of variables and low degree polynomials, and the timeout is small (10s). It would be much more 
+interesting to see how the approach scales to larger sizes of problems. Also, the paper does not explain 
+how the problems were generated. The abstract says they are synthetic but that's not enough information. 
+For techniques that rely on bit-blasting, it can be important to know the size of constants involved.
+A. For Martin to decide when to use new (and more complex) benchmarks.
+
+Q. Since z3 looks superior to all other solvers on these benchmarks, it would make sense to try z3 rather 
+than cvc5 as the solver in CRTsolver. I'd like to see whether using CRT can make z3 faster. Similarly, 
+since part of the experiments use bit-blasting, it would make sense to include other solvers that cvc5.
+A. For Martin to decide on the strategic value in using Z3 as the backend for this project.
+
+Q. Typo on page 1: `of their being` should be `of there being` (the whole sentence would benefit from 
+rewriting).
+A. DONE
+
+Q. Table 1 is not particularly readable. Why not using a constant unit for the run-time (say ms) instead 
+of `10^-02` and `10^-03` everywhere.
+A. For Martin to decide on whether or not we use a constant unit. This point was previously discussed and
+   the conclusion at the time was to use the unit of seconds due to convention.
+   
+Q. This sentence:  "The excellent performance of Z3 is due to them ..."  should be rewritten to avoid the 
+use of this weird `them`. How about "Z3 has excellent performance because of a preprocessing step that 
+factors polynomials ..."
+A. DONE

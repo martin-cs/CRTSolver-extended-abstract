@@ -23,14 +23,14 @@ Mode.
 
 We have created a set of benchmarks that evaluate the performance of CRTSolver 
 in both available modes on non-linear integer equations, in comparison with two
-widely used and state-of-the-art SMT solvers, Z3 and cvc5.
+widely used and state-of-the-art SMT solvers, Z3 \cite{10.1007/978-3-540-78800-3_24} and cvc5.
 The benchmarks are time and success rate, where time simply refers to the total runtime
 for a given equation in milliseconds. We define a successful solving of a given
 equation as termination with \texttt{SAT} or \texttt{UNSAT} - if a solver terminates
 with \texttt{UNKNOWN} due to time constraints, memory constraints, or internal error,
 then we define this as an unsuccessful solving.
 
-In Table \ref{table:results} we give a comparison with Z3 \cite{10.1007/978-3-540-78800-3_24} and cvc5 \cite{DBLP:conf/tacas/BarbosaBBKLMMMN22}.
+In Table \ref{table:results} we give a comparison with Z3 and cvc5.
 The performance evaluation was conducted using a Juypter Notebook file on Visual Studio Code (version 1.100).
 WSL2 (Ubuntu) was used on a Windows 11 Home (version 10.0.26100) PC with an Intel i5-11400 processor and 
 16GB of RAM. The respective Python APIs for the latest versions of Z3 (version 4.14.1.0) and cvc5 
@@ -130,13 +130,13 @@ $(x+23)^3 + (y-51)^3 + (z+39)^3 = -43$
   \label{figure:cactus-plot}
 \end{figure*}
 
-These results suggest that there using CRTSolver realistic potential in using CRTSolver in Bit-Vector Mode
+These results suggest that there is a realistic potential in using CRTSolver in Bit-Vector Mode
 as a solver that offers equal or better performance than existing solvers for non-linear
 integer equations. However, the Integer Mode of CRTSolver does not
 show significant potential.
 %
-The excellent performance of Z3 is due to them factoring polynomials
-(using modulo arithmetic and lifting) as a preprocessing step.  In the
+Z3 has excellent performance because of a preprocessing step that 
+factors polynomials (using modulo arithmetic and lifting).  In the
 case of single equations this gives broadly equivalent results.
 However in the case of larger sets of equations, CRTSolver will be
 able to propagate information about possible solutions between

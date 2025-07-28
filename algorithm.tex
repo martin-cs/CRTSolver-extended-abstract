@@ -40,9 +40,11 @@ We currently use an ascending list of primes, starting from $m_0 = 2$.}
 \item[Solve]{A copy of the set of equations computed $mod\ m_i$ is added
   to the modulo solver.  Then the modulo solver is checked for
   satisfiability.  If it is unsatisfiable then the equations are unsolvable
-  modulo in at least one of $m_i$'s and thus the original problem is
+  modulo at least one of $m_i$'s and thus the original problem is
   unsatisfiable.  If it is satisfiable then the model will give
   solutions for the equations modulo every $m_i$ used so far.}
+
+% TODO: why do we use Pi here?
 
 \item[Candidates]{The Chinese Remainder Theorem is used to compute
   a solution modulo $\Pi m_i$.  These are used to build a number of
