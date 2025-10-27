@@ -45,12 +45,11 @@ We currently use an ascending list of primes, starting from $m_0 = 2$.}
   solutions for the equations modulo every $m_i$ used so far.}
 
 % TODO: why do we use Pi here?
-
 \item[Candidates]{The Chinese Remainder Theorem is used to compute
   a solution modulo $\Pi m_i$.  These are used to build a number of
   candidates over $\mathbb{Z}$, each of which is the solution
   modulo $\Pi m_i$ plus $k \Pi m_i$.  Currently we produce candidates
-  for  $k \in [-2,2]$.}
+  for  $k \in [-2,2]$, for a total of 5 candidates.}
 
 \item[Check]{The original equations are evaluated using the candidate
   solutions.  If this gives a satisfying assignment then the original

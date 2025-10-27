@@ -21,11 +21,11 @@ For the checking of candidate results, the theory of Quantifier-Free
 Nonlinear Integer Arithmetic is used for both Integer Mode and Bit-Vector
 Mode.
 
-We have created a set of benchmarks that evaluate the performance of CRTSolver 
+Time and successful solving are the benchmarks used to evaluate the performance of CRTSolver 
 in both available modes on non-linear integer equations, in comparison with two
 widely used and state-of-the-art SMT solvers, Z3 \cite{10.1007/978-3-540-78800-3_24} and cvc5.
-The benchmarks are time and success rate, where time simply refers to the total runtime
-for a given equation in milliseconds. We define a successful solving of a given
+Time simply refers to the total runtime for a given equation in milliseconds. 
+We define a successful solving of a given
 equation as termination with \texttt{SAT} or \texttt{UNSAT} - if a solver terminates
 with \texttt{UNKNOWN} due to time constraints, memory constraints, or internal error,
 then we define this as an unsuccessful solving.
@@ -39,9 +39,11 @@ WSL2 (Ubuntu) was used on a Windows 11 Home (version 10.0.26100) PC with an Inte
 All solvers had their available memory limited to 4GB and were given the same time-out value 
 (the time limit for each \texttt{check-sat}) of 10 seconds.
 They were all given the same 38 test 
-files, which were in the form of SMT-LIB2 files containing non-linear integer equations. Files were divided into four 
-groups: equations involving 1 variable, equations involving 2 variables and equations involving 3 variables and sets of equations. 
-Each of these groups contained sub-groups of quadratic and cubic equations. There was a mixture of both 
+files, which were in the form of SMT2 files containing non-linear integer equations. Files were divided into 3 
+groups: equations with 1 variable, equations with 2 variables and equations with 3 variables.
+All equations in the first 2 groups contained only a single assert statement, whereas the third group
+contained a mixture of equations with single assert statements, and equations with multiple assert statements.
+Each of these 3 groups contained sub-groups of quadratic and cubic equations. There was a mixture of both 
 satisfiable and unsatisfiable equations - however, there was a slight bias for the frequency of unsatisfiable 
 cubic equations as these were found to be the most demanding equations, thus making them especially suitable 
 for evaluating performance.
